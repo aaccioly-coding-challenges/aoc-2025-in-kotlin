@@ -4,9 +4,18 @@ import kotlin.io.path.Path
 import kotlin.io.path.readText
 
 /**
- * Reads lines from the given input txt file.
+ * Reads text from the given input txt file.
+ * If a delimiter is provided, splits the text by that delimiter.
+ * Otherwise, splits the text by newlines.
  */
-fun readInput(name: String) = Path("src/$name.txt").readText().trim().lines()
+fun readInput(name: String, delimiter: String? = null): Sequence<String> {
+    val text = Path("src/$name.txt").readText().trim()
+    return if (delimiter != null) {
+        text.split(delimiter).asSequence()
+    } else {
+        text.lineSequence()
+    }
+}
 
 /**
  * Converts string to md5 hash.

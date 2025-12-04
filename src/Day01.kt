@@ -33,7 +33,7 @@ private fun String.toRotation(): Rotation {
     return Rotation(dir, substring(1).toInt())
 }
 
-private fun readRotations(input: List<String>): List<Rotation> = input.map { it.toRotation() }
+private fun readRotations(input: Sequence<String>): Sequence<Rotation> = input.map { it.toRotation() }
 
 private fun Position.rotate(rotation: Rotation, n: Int = DIAL_SIZE): Position {
     val delta = when (rotation.direction) {
@@ -43,7 +43,7 @@ private fun Position.rotate(rotation: Rotation, n: Int = DIAL_SIZE): Position {
     return (this + delta).mod(n)
 }
 
-private fun List<Rotation>.findPassword(clicksFor: (Position, Rotation) -> Int): Int {
+private fun Sequence<Rotation>.findPassword(clicksFor: (Position, Rotation) -> Int): Int {
     // Functional fold: carry current position and accumulated clicks as a Pair
     return this.fold(INITIAL_POSITION to 0) { (pos, total), rot ->
         val clicks = clicksFor(pos, rot)
@@ -53,10 +53,10 @@ private fun List<Rotation>.findPassword(clicksFor: (Position, Rotation) -> Int):
 }
 
 fun main() {
-    fun part1(input: List<String>): Int = readRotations(input)
+    fun part1(input: Sequence<String>): Int = readRotations(input)
         .findPassword { pos, _ -> if (pos.landedOnZero()) 1 else 0 }
 
-    fun part2(input: List<String>): Int = readRotations(input)
+    fun part2(input: Sequence<String>): Int = readRotations(input)
         .findPassword { pos, rot -> timesClickedZero(pos, rot) }
 
     // Read the input from the `src/Day01_test.txt` file.
