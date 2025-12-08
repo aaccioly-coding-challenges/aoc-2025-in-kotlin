@@ -1,5 +1,15 @@
 plugins {
-    kotlin("jvm") version "2.3.0-RC2"
+    alias(libs.plugins.kotlin.jvm)
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(libs.kotlin.logging)
+    runtimeOnly(libs.logback.classic)
 }
 
 sourceSets {
