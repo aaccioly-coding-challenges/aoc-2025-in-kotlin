@@ -23,7 +23,7 @@ private fun sumOfTopK(lines: Sequence<String>, k: Int): Long = lines
     .map { topKInOrder(it, k) }
     .map { it.joinToString("").toLong() }
     .onEachIndexed { index, value -> logger.trace { "Line $index: $value" } }
-    .sumOf { it }
+    .sum()
 
 fun main() {
 
