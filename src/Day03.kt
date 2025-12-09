@@ -26,7 +26,6 @@ private fun sumOfTopK(lines: Sequence<String>, k: Int): Long = lines
     .sum()
 
 fun main() {
-
     fun part1(input: Sequence<String>) = sumOfTopK(input, 2)
 
     fun part2(input: Sequence<String>) = sumOfTopK(input, 12)
