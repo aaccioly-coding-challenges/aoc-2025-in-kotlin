@@ -12,12 +12,6 @@ dependencies {
     runtimeOnly(libs.logback.classic)
 }
 
-sourceSets {
-    main {
-        kotlin.srcDir("src")
-    }
-}
-
 tasks {
     wrapper {
         gradleVersion = "9.2.1"

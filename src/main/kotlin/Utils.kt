@@ -9,7 +9,7 @@ import kotlin.io.path.readText
  * Otherwise, splits the text by newlines.
  */
 fun readInput(name: String, delimiter: String? = null): Sequence<String> {
-    val text = Path("src/$name.txt").readText().trim()
+    val text = Path("src/main/resources/$name.txt").readText().trim()
     return if (delimiter != null) {
         text.split(delimiter).asSequence()
     } else {
@@ -18,13 +18,13 @@ fun readInput(name: String, delimiter: String? = null): Sequence<String> {
 }
 
 /**
- * Converts string to md5 hash.
+ * Converts string to .md5 hash.
  */
 fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
     .toString(16)
     .padStart(32, '0')
 
-/** Converts String to a list of digits. */
+/** Converts String to a list of .digits. */
 fun String.digits() = this.map { it.digitToInt() }
 
 /**
