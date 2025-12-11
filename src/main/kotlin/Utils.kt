@@ -1,19 +1,43 @@
+import java.io.Reader
 import java.math.BigInteger
 import java.security.MessageDigest
-import kotlin.io.path.Path
-import kotlin.io.path.readText
 
 /**
- * Reads text from the given input txt file.
+ * Central public overload that reads from any Reader. Both file- and string-based
+ * variants should delegate to this, but to avoid double-closing and to keep the
+ * implementation simple we delegate to a small text-based helper.
+ */
+fun readInput(reader: Reader, delimiter: String? = null): Sequence<String> {
+    return reader.use { readInputFromText(it.readText(), delimiter) }
+}
+
+/**
+ * Reads text from the given input txt resource on the classpath.
  * If a delimiter is provided, splits the text by that delimiter.
  * Otherwise, splits the text by newlines.
  */
 fun readInput(name: String, delimiter: String? = null): Sequence<String> {
-    val text = Path("src/main/resources/$name.txt").readText().trim()
+    val stream = object {}.javaClass.classLoader.getResourceAsStream("$name.txt")
+        ?: throw IllegalArgumentException("Resource not found: $name.txt")
+    return stream.bufferedReader().use { readInputFromText(it.readText(), delimiter) }
+}
+
+/**
+ * Variant that reads input from a raw String. Useful for tests.
+ */
+fun readInputFromString(text: String, delimiter: String? = null): Sequence<String> =
+    readInputFromText(text, delimiter)
+
+/**
+ * Private helper that reads from any text and returns the same Sequence behaviour.
+ * It centralizes trimming and splitting so callers don't duplicate that logic.
+ */
+private fun readInputFromText(text: String, delimiter: String? = null): Sequence<String> {
+    val trimmed = text.trim()
     return if (delimiter != null) {
-        text.split(delimiter).asSequence()
+        trimmed.split(delimiter).asSequence()
     } else {
-        text.lineSequence()
+        trimmed.lineSequence()
     }
 }
 
