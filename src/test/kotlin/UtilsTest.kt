@@ -23,9 +23,7 @@ class UtilsTest {
 
     @Test
     fun `md5 produces expected hash`() {
-        // md5 of empty string is d41d8cd98f00b204e9800998ecf8427e
         "".md5() shouldBe "d41d8cd98f00b204e9800998ecf8427e"
-        // md5 of "abc" is 900150983cd24fb0d6963f7d28e17f72
         "abc".md5() shouldBe "900150983cd24fb0d6963f7d28e17f72"
     }
 }

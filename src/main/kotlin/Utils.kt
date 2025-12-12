@@ -1,15 +1,9 @@
-import java.io.Reader
 import java.math.BigInteger
 import java.security.MessageDigest
 
-/**
- * Central public overload that reads from any Reader. Both file- and string-based
- * variants should delegate to this, but to avoid double-closing and to keep the
- * implementation simple we delegate to a small text-based helper.
- */
-fun readInput(reader: Reader, delimiter: String? = null): Sequence<String> {
-    return reader.use { readInputFromText(it.readText(), delimiter) }
-}
+
+// Anchor for resource lookups; using a named object is clearer than anonymous hacks.
+private object ResourceLoader
 
 /**
  * Reads text from the given input txt resource on the classpath.
@@ -17,7 +11,8 @@ fun readInput(reader: Reader, delimiter: String? = null): Sequence<String> {
  * Otherwise, splits the text by newlines.
  */
 fun readInput(name: String, delimiter: String? = null): Sequence<String> {
-    val stream = object {}.javaClass.classLoader.getResourceAsStream("$name.txt")
+    // For arbitrary delimiter we need the whole text to split, so read eagerly.
+    val stream = ResourceLoader::class.java.getResourceAsStream("/$name.txt")
         ?: throw IllegalArgumentException("Resource not found: $name.txt")
     return stream.bufferedReader().use { readInputFromText(it.readText(), delimiter) }
 }
