@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
       - name: Set up Java
-        uses: actions/setup-java@5d7b2146334bacf88728daaa70414a99f5164e0f # match CI pinned version
+        uses: actions/setup-java@1b1bbe1085cb6ab21b5b19b7bebc091a9430026a # match CI pinned version
         with:
           distribution: 'temurin'
           java-version: 25
