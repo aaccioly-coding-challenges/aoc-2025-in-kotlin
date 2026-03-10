@@ -7,7 +7,7 @@ logback = "1.5.32"
 
 # Testing versions
 junit-bom = "6.0.3"
-kotest = "6.1.5"
+kotest = "6.1.6"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
