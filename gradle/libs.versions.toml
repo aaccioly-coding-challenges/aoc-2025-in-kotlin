@@ -6,7 +6,7 @@ kotlin-logging = "8.0.4"
 logback = "1.5.37"
 
 # Testing versions
-junit-bom = "6.1.0"
+junit-bom = "6.1.1"
 kotest = "6.2.1"
 
 [plugins]
