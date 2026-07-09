@@ -3,7 +3,7 @@
 [versions]
 kotlin = "2.4.0"
 kotlin-logging = "8.0.4"
-logback = "1.5.37"
+logback = "1.5.38"
 
 # Testing versions
 junit-bom = "6.1.1"
