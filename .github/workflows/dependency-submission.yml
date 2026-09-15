@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-java@1d018f9b8b9b505bb578a83b230fabcce01af93b # match CI pinned version
         with:
           distribution: 'temurin'
-          java-version: 25
+          java-version: 25.0.4+101.0.LTS
 
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6
