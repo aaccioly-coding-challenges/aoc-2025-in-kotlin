@@ -22,7 +22,7 @@ dependencies {
 
 tasks {
     wrapper {
-        gradleVersion = "9.9.2"
+        gradleVersion = "9.9.3"
     }
 
     // Use JUnit Platform for tests
